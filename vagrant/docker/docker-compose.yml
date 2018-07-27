@@ -1,0 +1,9 @@
+version: '3'
+services:
+  jenkins_server:
+    image: "registry.fundacion-jala.local/devops/jenkins/jenkins:2.107.3"
+	ports:
+	  - "8080:8080"
+	  - "5000:5000"
+	volumes:
+	  - ./jenkins:/var/jenkins_home
