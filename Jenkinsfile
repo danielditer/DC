@@ -4,9 +4,7 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building..'
-        sh '''
-        ./gradle/task3/gradlew clean assemble -p gradle/task3/
-        '''
+        sh './gradle/task3/gradlew clean assemble -p gradle/task3/'
       }
     }
     stage('Test') {
@@ -22,5 +20,5 @@ pipeline {
 		archive includes: 'repos/*.jar'
       }
     }
-    }
+  }
 }
