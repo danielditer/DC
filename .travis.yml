@@ -6,11 +6,8 @@ sudo: required
 branches:
 only: master
 
-before_script:
-- bash script.sh
-
 script:
-- ./gradlew check
+- bash script.sh
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
