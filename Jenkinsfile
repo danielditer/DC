@@ -5,9 +5,8 @@ pipeline {
       steps {
         echo 'Building..'
         sh '''
-        cd gradle/task3/ 
-        chmod +x gradlew 
-        ./gradlew clean assemble
+        chmod +x gradle/task3/gradlew 
+        ./gradle/task3/gradlew clean assemble -p gradle/task3/
         '''
       }
     }
