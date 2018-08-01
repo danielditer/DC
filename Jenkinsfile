@@ -21,5 +21,11 @@ pipeline {
         sh './gradle/task3/gradlew clean build -p gradle/task3/'
       }
     }
+	post {
+        always {
+            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
+            junit 'build/reports/**/*.xml'
+        }
+    }
   }
 }
