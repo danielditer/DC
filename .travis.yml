@@ -6,8 +6,10 @@ sudo: required
 branches:
 only: master
 
-script:
+before_script:
 - bash build.sh
+
+script:
 - ./gradlew check
 
 after_success:
