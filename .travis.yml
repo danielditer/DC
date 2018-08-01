@@ -7,7 +7,7 @@ branches:
 only: master
 
 before_script:
-- bash build.sh
+- bash script.sh
 
 script:
 - ./gradlew check
