@@ -1,0 +1,19 @@
+language: java
+jdk:
+- oraclejdk8
+sudo: required
+
+branches:
+only: master
+
+before_script:
+- bash script.sh
+
+script:
+- ./gradlew check
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email: true
