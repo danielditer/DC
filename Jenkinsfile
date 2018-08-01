@@ -17,7 +17,7 @@ pipeline {
       steps {
         echo 'Deploying....'
         sh './gradle/task3/gradlew clean build -p gradle/task3/'
-		archive includes: 'repos/*.jar'
+		archiveArtifacts artifacts: 'gradle/task3/repos/*.jar'
       }
     }
   }
