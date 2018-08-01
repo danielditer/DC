@@ -33,7 +33,7 @@ pipeline {
                         reportName: 'JaCoCo Coverage Reports'])
         }
     success {
-      archiveArtifacts artifacts: 'gradle/task3/repos/*.jar', fingerprint: true
+      archiveArtifacts artifacts: 'gradle/task3/build/libs/*.jar', fingerprint: true
     }
   }
 }
