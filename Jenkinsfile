@@ -13,19 +13,13 @@ pipeline {
     stage('Test') {
       steps {
         echo 'Testing..'
-        sh '''
-        chmod +x gradle/task3/gradlew 
-        ./gradle/task3/gradlew clean test -p gradle/task3/
-        '''
+        sh './gradle/task3/gradlew clean test -p gradle/task3/'
       }
     }
     stage('Deploy') {
       steps {
         echo 'Deploying....'
-        sh '''
-        chmod +x gradle/task3/gradlew 
-        ./gradle/task3/gradlew clean build
-        '''
+        sh './gradle/task3/gradlew clean build'
       }
     }
   }
