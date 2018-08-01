@@ -23,10 +23,9 @@ pipeline {
       steps {
         echo 'Deploying....'
         sh '''
-                cd gradle/task3/
-                chmod +x gradlew
-                ./gradlew clean build
-                '''
+        chmod +x gradle/task3/gradlew 
+        ./gradle/task3/gradlew clean build
+        '''
       }
     }
   }
