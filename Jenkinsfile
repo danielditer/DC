@@ -5,6 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building..'
+                sh 'chmod +x ./gradle/task3/gradlew'
                 sh './gradle/task3/gradlew clean assemble -p gradle/task3/'
             }
         }
