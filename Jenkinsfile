@@ -19,13 +19,8 @@ pipeline {
       steps {
         echo 'Deploying....'
         sh './gradle/task3/gradlew clean build -p gradle/task3/'
+		archive includes: 'repos/*.jar'
       }
     }
     }
-	post {
-        always {
-            archiveArtifacts artifacts: 'build/libs/**/*.jar', fingerprint: true
-            junit 'build/reports/**/*.xml'
-        }
-  }
 }
