@@ -4,7 +4,11 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Building..'
-        sh './gradle/task3/gradlew clean assemble -p gradle/task3/'
+        sh '''
+        cd gradle/task3/ 
+        chmod +x gradlew 
+        ./gradlew clean assemble
+        '''
       }
     }
     stage('Test') {
