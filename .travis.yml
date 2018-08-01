@@ -7,7 +7,7 @@ branches:
 only: master
 
 script:
-- build.sh
+- bash build.sh
 - ./gradlew check
 
 after_success:
