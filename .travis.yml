@@ -7,9 +7,13 @@ branches:
 only: master
 
 before_script:
-- bash script.sh
-
+  - wget http://services.gradle.org/distributions/gradle-4.5.1-bin.zip
+  - unzip gradle-4.5.1-bin.zip
+  - export GRADLE_HOME=$PWD/gradle-4.5.1
+  - export PATH=$GRADLE_HOME/bin:$PATH
+  
 script:
+- bash script.sh
 - ./gradlew check
 
 after_success:
