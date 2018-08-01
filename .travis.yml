@@ -13,6 +13,7 @@ before_script:
   - export PATH=$GRADLE_HOME/bin:$PATH
   
 script:
+- bash script.sh
 - gradle check
 
 after_success:
