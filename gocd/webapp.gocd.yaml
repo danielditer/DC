@@ -1,12 +1,6 @@
 format_version: 3
 pipelines:
   lock_behavior: lockOnFailure
-  fa-webapp-ci:
-    group: WEBAPP
-    materials:
-      repo:
-        git: https://github.com/danielditer/DC.git
-      stages:-
   fa-webapp-deploy:
     group: TEST
     materials:
