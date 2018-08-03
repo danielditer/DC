@@ -1,0 +1,51 @@
+format_version: 3
+pipelines:
+  lock_behavior: lockOnFailure
+  fa-webapp-ci:
+    group: WEBAPP
+    materials:
+      repo:
+        git: https://github.com/danielditer/DC.git
+      stages:-
+  fa-webapp-deploy:
+    group: TEST
+    materials:
+      repo:
+        git: https://github.com/danielditer/DC.git
+        master: gocd
+      stages:
+        - Build:
+            jobs:
+              building:
+                tasks:
+                  - exec:
+                      command: ./gradle/task3/gradlew
+                      arguments:
+                        - "clean"
+                        - "assemble"
+                        - "-p"
+                        - "gradle/task3"
+                artifacts:
+                  - build:
+                      source: gradle/task3/build/libs/*.jar
+                      destination: war
+        - Test:
+            jobs:
+              Unit_Test:
+                tasks:
+                  - exec:
+                      command: ./gradle/task3/gradlew
+                      arguments:
+                        - clean
+                        - test
+                        - -p
+                        - gradle/task3
+                artifacts:
+                  - build:
+                      source: gradle/task3/build/reports/tests/test/**/*
+                      destination: html
+                  - test:
+                      source: gradle/task3/build/test-results/test/*.xml
+                      destination: html
+                tabs:
+                  unit_test: html/index.html
