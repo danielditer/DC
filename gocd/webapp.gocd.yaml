@@ -12,7 +12,7 @@ pipelines:
     materials:
       repo:
         git: https://github.com/danielditer/DC.git
-        master: gocd
+        master: master
       stages:
         - Build:
             jobs:
