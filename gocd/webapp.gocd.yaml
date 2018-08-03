@@ -1,7 +1,7 @@
 format_version: 3
 pipelines:
-  lock_behavior: lockOnFailure
   fa-webapp-deploy:
+    lock_behavior: lockOnFailure
     group: TEST
     materials:
       repo:
