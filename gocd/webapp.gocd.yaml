@@ -1,27 +1,6 @@
 format_version: 3
 pipelines:
-  fa-webapp-ci:
-    group: WEBAPP
-    materials:
-      repo:
-        git: https://github.com/danielditer/DC.git
-      stages:
-        - Build:
-            jobs:
-              building:
-                tasks:
-                  - exec:
-                      command: ./gradle/task3/gradlew
-                      arguments:
-                        - "clean"
-                        - "assemble"
-                        - "-p"
-                        - "gradle/task3"
-                artifacts:
-                  - build:
-                      source: gradle/task3/build/libs/*.jar
-                      destination: war
-  fa-webapp-deploy:
+fa-webapp-deploy:
     lock_behavior: lockOnFailure
     group: TEST
     materials:
