@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'checkstyle'
 apply plugin: 'jacoco'
+apply plugin: "org.sonarqube"
 
 version = '1.0'
 jar {
@@ -44,5 +45,16 @@ uploadArchives {
         flatDir {
             dirs 'repos'
         }
+    }
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.6.2"
     }
 }

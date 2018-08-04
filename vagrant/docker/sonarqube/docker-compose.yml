@@ -1,0 +1,12 @@
+version: '3'
+services:
+ sonarqube:
+  image: "registry.fundacion-jala.local/devops/sonarqube:6.7.4-alpine"
+  ports:
+   - "9000:9000"
+   - "9092:9092"
+  volumes:
+   - /home/ubuntu/sonarqube/sonarqube_conf:/opt/sonarqube/conf
+   - /home/ubuntu/sonarqube/sonarqube_data:/opt/sonarqube/data
+   - /home/ubuntu/sonarqube/sonarqube_extensions:/opt/sonarqube/extensions
+   - /home/ubuntu/sonarqube/sonarqube_bundled-plugins:/opt/sonarqube/lib/bundled-plugins
