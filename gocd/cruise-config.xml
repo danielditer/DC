@@ -56,6 +56,19 @@
           </job>
         </jobs>
       </stage>
+	  <stage name="Code-inspection">
+        <jobs>
+          <job name="sonar">
+            <tasks>
+              <exec command="./gradle/task3/gradlew">
+                <arg>sonarqube</arg>
+                <arg>-Dsonar.host.url=http://sonarqube:9000</arg>
+                <runif status="passed" />
+              </exec>
+            </tasks>
+          </job>
+        </jobs>
+      </stage>
     </pipeline>
   </pipelines>
   <pipelines group="TEST" />
