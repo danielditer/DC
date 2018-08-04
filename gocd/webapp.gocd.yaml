@@ -5,7 +5,7 @@ pipelines:
     group: TEST
     materials:
       repo:
-        git: https://github.com/danielditer/DC.git
+        git: https://github.com/devops-at06/DC.git
         master: master
     stages:
       - Build:
