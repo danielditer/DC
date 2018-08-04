@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="111">
-  <server artifactsdir="artifacts" agentAutoRegisterKey="405f61aa-6898-4e65-9225-8acd13bb5f26" webhookSecret="c4b4cc3e-ca9c-4aec-b18d-ee4562daa30c" commandRepositoryLocation="default" serverId="fc1acd78-d87c-4316-93ad-4ae8d933e959" tokenGenerationKey="4bd1ceab-b99f-47bf-b7d4-ba7e3add7a4d" />
+<cruise xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="cruise-config.xsd" schemaVersion="108">
+  <server artifactsdir="artifacts" agentAutoRegisterKey="2570db2e-f3ab-45ea-be2a-63af1ec7a492" webhookSecret="62b551ef-78bd-4413-a0dd-dd6d5e3f1e93" commandRepositoryLocation="default" serverId="b7343f27-06bf-44c2-92d4-2a06bc6f2009" tokenGenerationKey="7314a47c-f8c6-4b78-916b-39a52ea72d80" />
+  <config-repos>
+    <config-repo pluginId="yaml.config.plugin" id="quickstart">
+      <git url="https://github.com/devops-at06/DC.git" />
+      <configuration>
+        <property>
+          <key>file_pattern</key>
+          <value>gocd/webapp.gocd.yaml</value>
+        </property>
+      </configuration>
+    </config-repo>
+  </config-repos>
   <pipelines group="WEB-APP">
     <pipeline name="quickstart-app" lockBehavior="lockOnFailure">
       <materials>
@@ -47,7 +58,12 @@
       </stage>
     </pipeline>
   </pipelines>
+  <pipelines group="TEST" />
   <agents>
-    <agent hostname="User-PC" ipaddress="127.0.0.1" uuid="fa15dd8a-aa9a-42ca-ad50-f7442eb0ab04" />
+    <agent hostname="d91d318b6ce7" ipaddress="172.18.0.3" uuid="edce7d71-bf03-4552-ac4e-344d729a4ceb">
+      <resources>
+        <resource>alpine</resource>
+      </resources>
+    </agent>
   </agents>
 </cruise>
