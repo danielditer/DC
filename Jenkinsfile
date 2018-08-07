@@ -13,6 +13,12 @@ pipeline {
         sh './gradle/task3/gradlew test jacocoTestReport -p gradle/task3/'
       }
     }
+	stage('CodeInspection') {
+      steps {
+        echo 'Inspecting code..'
+        sh './gradle/task3/gradlew sonarqube -p gradle/task3/'
+      }
+    }
   }
   post {
     always {

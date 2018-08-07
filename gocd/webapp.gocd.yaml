@@ -43,3 +43,13 @@ pipelines:
                     destination: html
               tabs:
                 unit_test: html/index.html
+      - CodeInspection:
+          jobs:
+            Check:
+              tasks:
+                - exec:
+                    command: ./gradle/task3/gradlew
+                    arguments:
+                      - sonarqube
+                      - -p
+                      - gradle/task3
