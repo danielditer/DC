@@ -1,9 +1,9 @@
 add-apt-repository ppa:openjdk-r/ppa -y
 apt-get update
-echo "\n----- Installing Apache and Java 8 ------\n"
+echo -e "\n----- Installing Apache and Java 8 ------\n"
 apt-get -y install apache2 openjdk-8-jdk
 update-alternatives --config java
-echo "\n----- Installing Tomcat ------\n"
+echo -e "\n----- Installing Tomcat ------\n"
 # install tomcat
 sudo groupadd tomcat
 sudo useradd -s /bin/false -g tomcat -d /opt/tomcat tomcat
