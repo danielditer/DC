@@ -1,0 +1,22 @@
+plugins {
+    id 'org.hidetake.ssh' version '2.9.0'
+}
+
+remotes {
+    webServer {
+        host = '10.28.109.119'
+        user = 'ubuntu'
+        identity = file(System.properties['key.path'])
+    }
+}
+
+task deploy {
+    doLast {
+        ssh.run {
+            session(remotes.webServer) {
+                execute 'sudo chmod -R ugo+rw /var/lib/tomcat8/'
+                put from: 'build/libs/quickstart.war', into: '/var/lib/tomcat8/webapps/'
+            }
+        }
+    }
+}
