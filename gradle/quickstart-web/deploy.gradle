@@ -1,0 +1,28 @@
+plugins {
+    id 'org.hidetake.ssh' version '2.9.0'
+}
+
+ssh.settings {
+    knownHosts = allowAnyHosts
+}
+
+remotes {
+    webServer {
+        host = dev_server
+        user = user_server
+        identity = file("${user_home}/key.pem")
+    }
+}
+
+task deploy {
+  doLast {
+    ssh.run {
+      session(remotes.webServer) {
+        put from: 'gradle/quickstart-web/deploy-webapp.sh', into: '/home/ubuntu/'	          
+        put from: "${war_path}/${war_name}.war", into: "/tmp/${war_name}.war"
+        execute 'sudo chmod +x /home/ubuntu/deploy-webapp.sh'
+        execute 'sudo sh /home/ubuntu/deploy-webapp.sh'
+      }
+    }
+  }
+}

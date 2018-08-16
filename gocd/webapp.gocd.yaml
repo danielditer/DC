@@ -1,6 +1,6 @@
 format_version: 3
 pipelines:
-  fa-webapp-deploy:
+  dc-webapp-deploy:
     lock_behavior: lockOnFailure
     group: TEST
     materials:
@@ -53,3 +53,75 @@ pipelines:
                       - sonarqube
                       - -p
                       - gradle/task3
+  dc-webapp-build:
+    lock_behavior: lockOnFailure
+    group: Application
+    materials:
+      repo:
+        git: https://github.com/devops-at06/DC.git
+        master: master
+    stages:
+      - Commit:
+          jobs:
+            building:
+              tasks:
+                - exec:
+                    command: ./gradle/quickstart-web/gradlew
+                    arguments:
+                      - "clean"
+                      - "assemble"
+                      - "-p"
+                      - "gradle/quickstart-web"
+              artifacts:
+                - build:
+                    source: gradle/quickstart-web/build/libs/*.war
+                    destination: war
+      - Test:
+          jobs:
+            Unit_Test:
+              tasks:
+                - exec:
+                    command: ./gradle/quickstart-web/gradlew
+                    arguments:
+                      - test
+                      - -p
+                      - gradle/quickstart-web
+              artifacts:
+                - build:
+                    source: gradle/quickstart-web/build/reports/tests/test/**/*
+                    destination: html
+                - test:
+                    source: gradle/quickstart-web/build/test-results/test/*.xml
+                    destination: xml
+              tabs:
+                unit_test: html/index.html
+      - CodeInspection:
+          jobs:
+            Check:
+              tasks:
+                - exec:
+                    command: ./gradle/quickstart-web/gradlew
+                    arguments:
+                      - sonarqube
+                      - -p
+                      - gradle/quickstart-web
+      - Deploy:
+          jobs:
+            Application:
+              tasks:
+                - fetch:
+                    stage: Commit
+                    job: Building
+                    source: war/
+                - exec:
+                    command: ./gradle/quickstart-web/gradlew
+                    arguments:
+                      - -b
+                      - deploy.gradle
+                      - deploy
+                      - -Pdev_server=10.28.135.47
+                      - -Puser_home=/home/go
+                      - -Pwar_path=war
+                      - -p
+                      - gradle/quickstart-web
+              
